@@ -149,11 +149,47 @@ namespace ed
 
 		// Operadores de asignación
 
+		/*!
+			\brief Función que asigna el grado y el coeficiente de un monomio a otro
+			\note Función inline
+			\param m: Monomio que será asignado
+			\pre Ninguna
+			\post El grado del monomio es igual al de "m"
+			\post El coeficiente del monomio es igual al de "m"
+			\return El monomio modificado
+		*/
+		inline Monomio & operator=(Monomio const &m){
+			setGrado(m.getGrado());
+			setCoeficiente(m.getCoeficiente());
 
-		Monomio & operator=(Monomio const &m);
+			#ifndef NDEBUG
+				assert(this->getGrado() == m.getGrado());
+				assert( std::abs(this->getCoeficiente() - m.getCoeficiente()) < COTA_ERROR )
+			#endif
 
-		// COMPLETAR LOS COMENTARIOS DE DOXYGEN
-		Monomio & operator=(double const &x);
+			return *this;
+		}
+
+		/*!
+			\brief Función que asigna un valor al coeficiente de un monomio y 0 al grado
+			\note Función inline
+			\param x: Valor que será asignado
+			\pre Ninguna
+			\post El grado del monomio es igual a 0"
+			\post El coeficiente del monomio es igual a "x"
+			\return El monomio modificado
+		*/
+		inline Monomio & operator=(double const &x){
+			setGrado(m.getGrado());
+			setCoeficiente(m.getCoeficiente());
+
+			#ifndef NDEBUG
+				assert(this->getGrado() == 0);
+				assert( std::abs(this->getCoeficiente() - x ) < COTA_ERROR )
+			#endif
+
+			return *this;
+		}
 
 
 		// Operadores aritméticos y asignación
