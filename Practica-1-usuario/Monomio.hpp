@@ -43,7 +43,7 @@ namespace ed
 			\sa setGrado(), setCoeficiente()
 		*/
 
-		inline Monomio(const int grado = 0, const float coeficiente = 0.0){
+		inline Monomio(const int grado = 0, const double coeficiente = 0.0){
 
 			#ifndef NDEBUG
 				assert(grado >= 0);
@@ -88,7 +88,7 @@ namespace ed
 			\post Ninguna
 			\return El valor del coeficiente
 		*/
-		inline float getCoeficiente() const {
+		inline double getCoeficiente() const {
 			return _coeficiente;
 		}
 
@@ -149,7 +149,7 @@ namespace ed
 
 		// Operadores de asignación
 
-		// COMPLETAR LOS COMENTARIOS DE DOXYGEN
+
 		Monomio & operator=(Monomio const &m);
 
 		// COMPLETAR LOS COMENTARIOS DE DOXYGEN
