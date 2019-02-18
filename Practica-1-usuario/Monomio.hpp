@@ -68,7 +68,7 @@ namespace ed
 			\post El coeficiente del monomio creado es igual al de "m"
 			\sa setGrado(), setCoeficiente(), getGrado(), getCoeficiente()
 		*/
-		inline Monomio(const ed::Monomio &m){
+		inline Monomio(const Monomio &m){
 			setGrado(m.getGrado());
 			setCoeficiente(m.getCoeficiente());
 
@@ -195,10 +195,46 @@ namespace ed
 		// Operadores aritméticos y asignación
 
 		// COMPLETAR LOS COMENTARIOS DE DOXYGEN
-		Monomio & operator+=(Monomio const &m);
+		/*!
+			\brief Función que suma a un monomio otro del mismo grado
+			\param m: Monomio que será sumado al original
+			\pre El grado de m es igual al del monomio que llama al operador
+			\post Al coeficiente del monomio que llama se le suma el de m
+			\post El grado del monomio no se ha modificado
+			\return El monomio modificado
+		*/
+		Monomio &operator+=(Monomio const &m);
 
+		/*!
+			\brief Función que resta a un monomio otro del mismo grado
+			\param m: Monomio que será restado al original
+			\pre El grado de m es igual al del monomio que llama al operador
+			\post Al coeficiente del monomio que llama se le ha restado el de m
+			\post El grado del monomio no se ha modificado
+			\return El monomio modificado
+		*/
+		Monomio &operator-=(Monomio const &m);
 
-		// COMPLETAR EL RESTO DE OPERADORES
+		/*!
+			\brief Función que multiplica un monomio por otro
+			\param m: Monomio por el que será multiplicado el original
+			\pre Ninguna
+			\post El coeficiente del monomio se ha multiplicado por el de m
+			\post El grado del monomio se ha incrementado en el de m
+			\return El monomio modificado
+		*/
+		Monomio &operator*=(Monomio const &m);
+
+		/*!
+			\brief Función que divide un monomio por otro
+			\param m: Monomio por el que será dividido el original
+			\pre El grado de m es igual o menor que el del monomio que llama
+			\pre El coeficiente de m es distinto de 0.0
+			\post El coeficiente del monomio se ha dividido por el de m
+			\post El grado del monomio se ha decrementado en el de m
+			\return El monomio modificado
+		*/
+		Monomio &operator/=(Monomio const &m);
 
 
 		/////////////////////////////////////////////////////////////////////////////////////
