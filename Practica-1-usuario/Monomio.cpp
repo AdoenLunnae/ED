@@ -1,4 +1,4 @@
-/*! 
+/*!
    \file  Monomio.cpp
    \brief Fichero que contiene el código de las funciones de la clase Monomio
 */
@@ -9,27 +9,7 @@
 
 #include "Monomio.hpp"
 
-// Operadores de asignación
 
-// COMPLETAR
-
-ed::Monomio & ed::Monomio::operator=(ed::Monomio const &m)
-{
-	// COMPLETAR
-
-
-	// Se devuelve el objeto actual
-	return *this;
-}
-
-
-ed::Monomio & ed::Monomio::operator=(double const &x)
-{
-	// COMPLETAR
-
-	// Se devuelve el objeto actual
-	return *this;
-}
 
 
 
@@ -39,19 +19,62 @@ ed::Monomio & ed::Monomio::operator=(double const &x)
 
 // COMPLETAR
 
-ed::Monomio & ed::Monomio::operator+=(ed::Monomio const &m)
-{
-	// COMPLETAR
 
+ed::Monomio & ed::Monomio::operator+=(ed::Monomio const &m){
+	assert( this->getGrado() == m.getGrado() );
 
-	// Se devuelve el objeto actual
+	ed::Monomio old(*this);
+	this->setCoeficiente( this->getCoeficiente() + m.getCoeficiente() );
+
+	assert( this->getCoeficiente() == \
+				( old.getCoeficiente() + m.getCoeficiente() ) );
+
+	assert( this->getGrado() == old.getGrado() );
+
 	return *this;
 }
 
+ed::Monomio & ed::Monomio::operator-=(ed::Monomio const &m){
+	assert( this->getGrado() == m.getGrado() );
 
+	ed::Monomio old(*this);
+	this->setCoeficiente( this->getCoeficiente() - m.getCoeficiente() );
 
-// COMPLETAR EL RESTO DE OPERADORES
+	assert( this->getCoeficiente() == \
+				( old.getCoeficiente() - m.getCoeficiente() ) );
 
+	assert( this->getGrado() == old.getGrado() );
+	// Se devuelve el objeto actual
+	return (*this);
+}
+
+ed::Monomio & ed::Monomio::operator*=(ed::Monomio const &m){
+	ed::Monomio old(*this);
+	this->setCoeficiente( this->getCoeficiente() * m.getCoeficiente() );
+	this->setGrado( this->getGrado() - m.getGrado() );
+
+	assert( this->getCoeficiente() == \
+				( old.getCoeficiente() * m.getCoeficiente() ) );
+
+	assert( this->getGrado() == ( old.getGrado() * m.getGrado() ) );
+
+	return (*this);
+}
+
+ed::Monomio & ed::Monomio::operator/=(ed::Monomio const &m){
+	assert( this->getGrado() >= m.getGrado() );
+	assert( std::abs(m.getCoeficiente() ) >= COTA_ERROR);
+	ed::Monomio old(*this);
+	this->setCoeficiente( this->getCoeficiente() * m.getCoeficiente() );
+	this->setGrado( this->getGrado() - m.getGrado() );
+
+	assert( this->getCoeficiente() == \
+				( old.getCoeficiente() * m.getCoeficiente() ) );
+
+	assert( this->getGrado() == ( old.getGrado() * m.getGrado() ) );
+
+	return (*this);
+}
 
 
 ///////////////////////////////////////////////////////////////////////
@@ -66,4 +89,3 @@ ed::Monomio & ed::Monomio::operator+=(ed::Monomio const &m)
 // Funciones auxiliares de la clase Monomio
 
 // COMPLETAR
-
