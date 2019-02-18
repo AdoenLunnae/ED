@@ -91,7 +91,7 @@ ed::Monomio & ed::Monomio::operator/=(ed::Monomio const &m){
 	return (*this);
 }
 
-ed::Monomio & ed::Monomio::operator*=(float const x){
+ed::Monomio & ed::Monomio::operator*=(double const x){
 	ed::Monomio old(*this);
 	this->setCoeficiente( this->getCoeficiente() * x );
 
@@ -104,7 +104,7 @@ ed::Monomio & ed::Monomio::operator*=(float const x){
 return(*this);
 }
 
-ed::Monomio & ed::Monomio::operator/=(float const x){
+ed::Monomio & ed::Monomio::operator/=(double const x){
 	#ifndef NDEBUG
 		assert( std::abs(x) >= COTA_ERROR);
 	#endif
