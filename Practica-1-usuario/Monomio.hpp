@@ -23,13 +23,11 @@ namespace ed
 	//! \name Atributos privados de la clase Monomio
 	private:
 		int _grado; //!< Grado del monomio
-		float _coeficiente; //!< Coeficiente del monomio
+		double _coeficiente; //!< Coeficiente del monomio
 
 	//! \name Funciones o métodos públicos de la clase Monomio
 	public:
-
 	//! \name Constructores de la clase Monomio
-
 
 		/*!
 			\brief 		Constructor parametrizado de la clase Monomio
@@ -43,7 +41,7 @@ namespace ed
 			\sa setGrado(), setCoeficiente()
 		*/
 
-		inline Monomio(const int grado = 0, const double coeficiente = 0.0){
+		inline Monomio(const int grado = 0, double const coeficiente = 0.0){
 
 			#ifndef NDEBUG
 				assert(grado >= 0);
@@ -114,7 +112,7 @@ namespace ed
 			\post El valor del coeficiente del monomio es "coeficiente"
 
 		*/
-		inline void setCoeficiente(const float coeficiente){
+		inline void setCoeficiente(double const coeficiente){
 			_coeficiente = coeficiente;
 
 			#ifndef NDEBUG
@@ -175,11 +173,11 @@ namespace ed
 			\note Función inline
 			\param x: Valor que será asignado
 			\pre Ninguna
-			\post El grado del monomio es igual a 0"
+			\post El grado del monomio es igual a 0
 			\post El coeficiente del monomio es igual a "x"
 			\return El monomio modificado
 		*/
-		inline Monomio & operator=(double const &x){
+		inline Monomio & operator=(double const x){
 			setGrado(m.getGrado());
 			setCoeficiente(m.getCoeficiente());
 
@@ -236,6 +234,25 @@ namespace ed
 		*/
 		Monomio &operator/=(Monomio const &m);
 
+		/*!
+			\brief Función que multiplica un monomio por un número real
+			\param x: Valor por el que será multiplicado el monomio
+			\pre Ninguna
+			\post El coeficiente del monomio se ha multiplicado por x
+			\post El grado del monomio no se ha modificado
+			\return El monomio modificado
+		*/
+		Monomio &operator*=(double const x);
+
+		/*!
+			\brief Función que divide un monomio por un número real
+			\param x: Valor por el que será dividido el monomio
+			\pre x es distinto de 0.0
+			\post El coeficiente del monomio se ha dividido por x
+			\post El grado del monomio no se ha modificado
+			\return El monomio modificado
+		*/
+		Monomio &operator/=(double const x);
 
 		/////////////////////////////////////////////////////////////////////////////////////
 
