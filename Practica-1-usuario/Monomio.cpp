@@ -7,7 +7,8 @@
 //  Ficheros de cabecera
 #include <iostream>
 #include <string>
-
+#include <cstdio>
+#include <cstring>
 #include "Monomio.hpp"
 #include "macros.hpp"
 
@@ -147,16 +148,20 @@ void ed::Monomio::leerMonomio(){
 
 void ed::Monomio::escribirMonomio() const {
 	std::string result;
-	if ( std::abs(this->getCoeficiente()+1) <= COTA_ERROR ){ //Grado = -1
+	char tmp[32];
+	if ( std::abs( this->getCoeficiente() + 1 ) <= COTA_ERROR ){ //Grado = -1
 		result += "-";
 	} else if(std::abs( this->getCoeficiente()-1 ) >= COTA_ERROR){ //Grado != 1
-		result += std::to_string( this->getCoeficiente() );
+		snprintf(tmp, 32, "%.14g", this->getCoeficiente());
+		result += std::string(tmp);
 	}
+	strcpy(tmp, "");
 	if( this->getGrado() != 0 ){
 		result += "x";
 		if( this->getGrado() != 1){
 			result += "^";
-			result += std::to_string( this->getGrado() );
+			snprintf(tmp, 32, "%d", this->getGrado());
+			result += std::string(tmp);
 		}
 	}
 	std::cout << result << std::endl;
