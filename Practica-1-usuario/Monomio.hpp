@@ -12,6 +12,7 @@
 // Para controlar las pre y post condiciones mediante asertos
 #include <cassert>
 
+#include <iostream>
 #define COTA_ERROR 1.0e-6  //!< Cota de error para la comparación números reales
 
 // Se incluye la clase Monomio dentro del espacio de nombre de la asigantura: ed
@@ -52,7 +53,7 @@ namespace ed
 
 			#ifndef NDEBUG
 				assert(getGrado() == grado);
-				assert( std::abs(getCoeficiente() - coeficiente) < COTA_ERROR )
+				assert( std::abs(getCoeficiente() - coeficiente) < COTA_ERROR );
 			#endif
 		}
 
@@ -72,7 +73,7 @@ namespace ed
 
 			#ifndef NDEBUG
 				assert(this->getGrado() == m.getGrado());
-				assert( std::abs(this->getCoeficiente() - m.getCoeficiente()) < COTA_ERROR )
+				assert( std::abs(this->getCoeficiente() - m.getCoeficiente()) < COTA_ERROR );
 			#endif
 		}
 
@@ -116,7 +117,7 @@ namespace ed
 			_coeficiente = coeficiente;
 
 			#ifndef NDEBUG
-				assert( std::abs(getCoeficiente() - coeficiente) < COTA_ERROR )
+				assert( std::abs(getCoeficiente() - coeficiente) < COTA_ERROR );
 			#endif
 		}
 
@@ -162,7 +163,7 @@ namespace ed
 
 			#ifndef NDEBUG
 				assert(this->getGrado() == m.getGrado());
-				assert( std::abs(this->getCoeficiente() - m.getCoeficiente()) < COTA_ERROR )
+				assert( std::abs(this->getCoeficiente() - m.getCoeficiente()) < COTA_ERROR );
 			#endif
 
 			return *this;
@@ -178,12 +179,12 @@ namespace ed
 			\return El monomio modificado
 		*/
 		inline Monomio & operator=(double const x){
-			setGrado(m.getGrado());
-			setCoeficiente(m.getCoeficiente());
+			setGrado(0);
+			setCoeficiente(x);
 
 			#ifndef NDEBUG
 				assert(this->getGrado() == 0);
-				assert( std::abs(this->getCoeficiente() - x ) < COTA_ERROR )
+				assert( std::abs(this->getCoeficiente() - x ) < COTA_ERROR );
 			#endif
 
 			return *this;
@@ -259,6 +260,20 @@ namespace ed
 		//! \name Funciones lectura y escritura de la clase Monomio
 
 		// COMPLETAR
+		/*!
+			\brief Lee los atributos de un monomio por teclado.
+			\pre Ninguna
+			\post El grado del monomio es mayor o igual que 0
+		*/
+		void leerMonomio();
+
+		/*!
+			\brief Escribe el monomio por pantalla en el formato Coef x ^ Grado
+			\pre Ninguna
+			\post Ninguna
+		*/
+		void escribirMonomio() const;
+
 
 
 		///////////////////////////////////////////////////////////////////////

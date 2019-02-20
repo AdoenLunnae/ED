@@ -7,7 +7,7 @@ OBJECTS = $(NAME).o \
 		Monomio.o
 
 #
-CPPFLAGS = -c -g -Wall -ansi -O2
+CPPFLAGS = -c -g -Wall -O2 # -ansi 
 
 INCLUDES = funcionesAuxiliares.hpp \
 			macros.hpp  \
