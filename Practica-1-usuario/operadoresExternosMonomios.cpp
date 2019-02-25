@@ -17,15 +17,22 @@ namespace ed
 	
 	// COMPLETAR
 
-	bool operator==(ed::Monomio const & m1, ed::Monomio const & m2)
-	{
-		// COMPLETAR Y MODIFICAR
-
-		// MODIFICAR: SE DEVUELVE UN VALOR ARBITRARIO PARA NO GENERAR AVISOS AL COMPILAR
-		return true;
+	bool operator==(ed::Monomio const & m1, ed::Monomio const & m2){
+		bool cGrados = ( m1.getGrado() == m2.getGrado() );
+		bool cCoef;
+		cCoef = ( std::abs( m1.getCoeficiente() - m2.getCoeficiente() ) <=COTA_ERROR);
+		return( cCoef && cGrados );
 	}
 
-	// COMPLETAR LOS OTROS OPERADORES DE IGUALDAD
+	bool operator==(ed::Monomio const & m1, double const x){
+		bool cCoef = ( std::abs( m1.getCoeficiente() - x) <= COTA_ERROR;
+		return( ( m1.getGrado() == 0 ) && cCoef); 
+	}
+
+	bool operator==(double const x, ed::Monomio const & m1){
+		bool cCoef = ( std::abs( m1.getCoeficiente() - x) <= COTA_ERROR;
+		return( ( m1.getGrado() == 0 ) && cCoef); 
+	}
 
 
 

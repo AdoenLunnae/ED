@@ -23,12 +23,36 @@ namespace ed
 
 	//! \name Operadores de igualdad  
 
-	// COMPLETAR LOS COMENTARIOS DE DOXYGEN
+	/*!
+		\brief Comprueba si dos monomios son iguales
+		\param m1: monomio a la izquierda
+		\param m2: monomio a la derecha
+		\pre Ninguna
+		\post El valor devuelto es verdadero si y sólo si tanto el grado 
+		como el coeficiente de los monomios son iguales
+	*/
 	bool operator==(ed::Monomio const & m1, ed::Monomio const & m2);
+	
 
+	/*!
+		\brief Comprueba si un monomio es igual a un número real
+		\param m1: monomio a la izquierda
+		\param x: numero real a la derecha
+		\pre Ninguna
+		\post El valor devuelto es verdadero si el grado del monomio es 0
+		y el coeficiente igual a x
+	*/
+	bool operator==(ed::Monomio const & m1, double const x);
 
-	// COMPLETAR LOS OTROS OPERADORES DE IGUALDAD
-
+	/*!
+		\brief Comprueba si un monomio es igual a un número real
+		\param x: numero real a la izquierda
+		\param m1: monomio a la derecha
+		\pre Ninguna
+		\post El valor devuelto es verdadero si el grado del monomio es 0
+		y el coeficiente igual a x
+	*/
+	bool operator==(double const x, ed::Monomio const & m1);
 
 	//! \name Operadores de desigualdad 
 

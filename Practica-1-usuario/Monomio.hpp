@@ -280,7 +280,18 @@ namespace ed
 
 		//! \name Funciones auxiliares de la clase Monomio
 
-		// COMPLETAR
+		/*!
+			\brief Función que calcula el valor de un monomio para un valor de X
+			\warning Usa el calificador const
+			\note Función inline
+			\param x: valor de X para el que se calcula el del monomio
+			\pre Ninguna
+			\post Ninguna
+			\return El valor del monomio
+		*/
+		double calcularValor(double const x) const{
+			return( this->getCoeficiente() * pow( x , this->getGrado() ) );
+		}
 
 
 
