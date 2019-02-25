@@ -290,7 +290,7 @@ void ed::testMonomio()
 	std::cout << RESET;
 	// Pausa
 	std::cin.ignore();
-/*
+
 	///////////////////////////////////////////////////////////////
 	// Calcular el valor de un monomio para un número real x
 	std::cout << BIGREEN;
@@ -312,7 +312,6 @@ void ed::testMonomio()
 	std::cout << std::endl;
 	std::cout<< "m3(" << x << ") = " << m3.calcularValor(x) << std::endl << std::endl;
 
-*/
 
 	// Fin
 	return;
