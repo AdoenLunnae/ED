@@ -61,11 +61,12 @@ int ed::menu()
 void ed::testMonomio()
 {
 	// QUITAR ESTAS SENTENCIAS Y EL COMENTARIO DE BLOQUE
+	/*
 	std::cout << BIGREEN;
 	std::cout << "testMonomio()" << std::endl;
 	std::cout << RESET;
 	std::cout << "Quitar el comentario de bloque cuando se haya codificado la clase Monomio " << std::endl << std::endl;
-
+	*/
 
 
 	double x;
@@ -113,7 +114,7 @@ void ed::testMonomio()
 
 	// Pausa
 	std::cin.ignore();
-
+	std::cin.ignore();
 	////////////////////////////////////////////////////////
 	// Operadores de asignación
 
@@ -325,13 +326,13 @@ void ed::testMonomio()
 void ed::operadoresExternosMonomios()
 {
 	// QUITAR ESTAS SENTENCIAS Y EL COMENTARIO DE BLOQUE
+	/*
 	std::cout << BIGREEN;
 	std::cout << "operadoresExternosMonomios()" << std::endl;
 	std::cout << RESET;
 	std::cout << "Quitar el comentario de bloque cuando se haya codificado la clase Monomio y los operadores externos de dicha clase" << std::endl << std::endl;
+	*/
 
-
-/*
 	double x;
 
 	// Constructor por defecto
@@ -380,7 +381,7 @@ void ed::operadoresExternosMonomios()
 	// Pausa
 	std::cin.ignore();
 
-
+	
 	// Operadores que no son miembros de la clase
 	std::cout << BIGREEN;
 	std::cout<< "Operadores que no son miembros de la clase" << std::endl << std::endl;
@@ -503,6 +504,7 @@ void ed::operadoresExternosMonomios()
 		std::cout << "m1 = " << m1 << std::endl;
 		std::cout << "m2 = " << m2 << std::endl;
 	}
+	
 
 	std::cout << "m1 * m2 = " << m1 * m2 << std::endl;
 
@@ -562,7 +564,6 @@ void ed::operadoresExternosMonomios()
 
 
 	std::cout << std::endl;
-*/
 
 	return;
 }

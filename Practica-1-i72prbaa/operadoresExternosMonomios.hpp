@@ -196,7 +196,7 @@ namespace ed
 		el de m2
 		\return El cociente de m1 y m2
 	*/
-	ed::Monomio & operator/ (double const x, ed::Monomio const &m1);
+	ed::Monomio & operator/ (ed::Monomio const &m1, ed::Monomio const &m2);
 
 	/*!
 		\brief Función que calcula el cociente de un monomio y un real
@@ -207,7 +207,7 @@ namespace ed
 		\post El coeficiente del monomio devuelto es igual al cociente del de m1 y x
 		\return El cociente de m1 y x
 	*/
-	ed::Monomio & operator/ (double const x, ed::Monomio const &m1);
+	ed::Monomio & operator/ (ed::Monomio const &m1, double const x);
 
 	/*!
 		\brief Función que calcula el cociente de un real y un monomio
@@ -227,7 +227,15 @@ namespace ed
 
 	//! \name Sobrecarga de los operadores de entrada y salida
 
-	// COMPLETAR LOS COMENTARIOS DE DOXYGEN
+	/*!
+		\brief Lee de un flujo los datos de un monomio separados por espacios
+		(coeficiente grado)
+		\param stream: flujo del que leer
+		\param m: monomio que leer
+		\pre Ninguna
+		\post Ninguna
+		\return Flujo pasado como parámetro
+	*/
 	 istream &operator>>(istream &stream, ed::Monomio &m);
 
 	// COMPLETAR LOS COMENTARIOS DE DOXYGEN

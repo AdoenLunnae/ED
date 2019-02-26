@@ -19,8 +19,6 @@
 
 // Operadores aritméticos y asignación
 
-// COMPLETAR
-
 
 ed::Monomio & ed::Monomio::operator+=(ed::Monomio const &m){
 	#ifndef NDEBUG
@@ -61,13 +59,13 @@ ed::Monomio & ed::Monomio::operator-=(ed::Monomio const &m){
 ed::Monomio & ed::Monomio::operator*=(ed::Monomio const &m){
 	ed::Monomio old(*this);
 	this->setCoeficiente( this->getCoeficiente() * m.getCoeficiente() );
-	this->setGrado( this->getGrado() - m.getGrado() );
+	this->setGrado( this->getGrado() + m.getGrado() );
 
 	#ifndef NDEBUG
 		assert( this->getCoeficiente() == \
 					( old.getCoeficiente() * m.getCoeficiente() ) );
 
-		assert( this->getGrado() == ( old.getGrado() - m.getGrado() ) );
+		assert( this->getGrado() == ( old.getGrado() + m.getGrado() ) );
 	#endif
 
 	return (*this);
@@ -80,14 +78,14 @@ ed::Monomio & ed::Monomio::operator/=(ed::Monomio const &m){
 	#endif
 
 	ed::Monomio old(*this);
-	this->setCoeficiente( this->getCoeficiente() * m.getCoeficiente() );
+	this->setCoeficiente( this->getCoeficiente() / m.getCoeficiente() );
 	this->setGrado( this->getGrado() - m.getGrado() );
 
 	#ifndef NDEBUG
 		assert( this->getCoeficiente() == \
-					( old.getCoeficiente() * m.getCoeficiente() ) );
+					( old.getCoeficiente() / m.getCoeficiente() ) );
 
-		assert( this->getGrado() == ( old.getGrado() * m.getGrado() ) );
+		assert( this->getGrado() == ( old.getGrado() - m.getGrado() ) );
 	#endif
 
 	return (*this);
@@ -103,7 +101,7 @@ ed::Monomio & ed::Monomio::operator*=(double const x){
 					<= COTA_ERROR );
 	#endif
 
-return(*this);
+	return(*this);
 }
 
 ed::Monomio & ed::Monomio::operator/=(double const x){
@@ -120,7 +118,7 @@ ed::Monomio & ed::Monomio::operator/=(double const x){
 						<= COTA_ERROR );
 	#endif
 
-return(*this);
+	return(*this);
 }
 ///////////////////////////////////////////////////////////////////////
 
@@ -131,12 +129,12 @@ void ed::Monomio::leerMonomio(){
 	double nCoef;
 
 	while(nGrado <= 0){
-		std::cout << BIGREEN << "Introduzca el grado:\t" << RESET;
+		std::cout << BIBLUE << "Introduzca el grado:\t" << RESET;
 		std::cin >> nGrado;
 	}
 	this->setGrado(nGrado);
 
-	std::cout << BIGREEN << "Introduzca el coeficiente:\t" << RESET;
+	std::cout << BIBLUE << "Introduzca el coeficiente:\t" << RESET;
 	std::cin >> nCoef;
 
 	this->setCoeficiente(nCoef);
