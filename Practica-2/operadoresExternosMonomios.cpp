@@ -9,25 +9,24 @@
 
 #include "operadoresExternosMonomios.hpp"
 
-
 //  Se incluyen los operadores sobrecargados dentro del espacio de nombres ed
 namespace ed
 {
 	// Operadores de igualdad
 
-	bool operator==(ed::Monomio const & m1, ed::Monomio const & m2){
+	bool operator==(Monomio const & m1, Monomio const & m2){
 		bool cGrados = ( m1.getGrado() == m2.getGrado() );
 		bool cCoef;
 		cCoef = ( std::abs( m1.getCoeficiente() - m2.getCoeficiente() ) <= COTA_ERROR );
 		return( cCoef && cGrados );
 	}
 
-	bool operator==(ed::Monomio const & m1, double const x){
+	bool operator==(Monomio const & m1, double const x){
 		bool cCoef = ( std::abs( m1.getCoeficiente() - x ) <= COTA_ERROR );
 		return( ( m1.getGrado() == 0 ) && cCoef);
 	}
 
-	bool operator==(double const x, ed::Monomio const & m1){
+	bool operator==(double const x, Monomio const & m1){
 		bool cCoef = ( std::abs( m1.getCoeficiente() - x ) <= COTA_ERROR );
 		return( ( m1.getGrado() == 0 ) && cCoef);
 	}
@@ -35,15 +34,15 @@ namespace ed
 
 	// Operadores de desigualdad
 
-	bool operator!=(ed::Monomio const & m1, ed::Monomio const & m2){
+	bool operator!=(Monomio const & m1, Monomio const & m2){
 		return( !( m1 == m2 ) );
 	}
 
-	bool operator!=(ed::Monomio const & m1, double const x){
+	bool operator!=(Monomio const & m1, double const x){
 		return( !( m1 == x ) );
 	}
 
-	bool operator!=(double const x, ed::Monomio const & m1){
+	bool operator!=(double const x, Monomio const & m1){
 		return( !( x == m1 ) );
 	}
 
@@ -51,14 +50,14 @@ namespace ed
 
 	// Operadores unarios prefijos
 
-	ed::Monomio & operator+(ed::Monomio const & m){
-		ed::Monomio *nuevo = new ed::Monomio(m);
+	Monomio & operator+(Monomio const & m){
+		Monomio *nuevo = new Monomio(m);
 
 		return *nuevo;
 	}
 
-	ed::Monomio & operator-(ed::Monomio const & m){
-		ed::Monomio *nuevo = new Monomio(m);
+	Monomio & operator-(Monomio const & m){
+		Monomio *nuevo = new Monomio(m);
 		nuevo->setCoeficiente( 0 - nuevo->getCoeficiente() );
 
 		return *nuevo;
@@ -70,12 +69,12 @@ namespace ed
 	// Operadores aritméticos binarios
 
 	// Suma
-	ed::Monomio & operator+ (ed::Monomio const &m1, ed::Monomio const &m2){
+	Monomio & operator+ (Monomio const &m1, Monomio const &m2){
 		#ifndef NDEBUG
 			assert( m1.getGrado() == m2.getGrado() );
 		#endif
 
-		ed::Monomio *nuevo = new ed::Monomio(m1);
+		Monomio *nuevo = new Monomio(m1);
 		*nuevo += m2;
 
 		#ifndef NDEBUG
@@ -90,12 +89,12 @@ namespace ed
 
 	////////////
 	// Resta
-	ed::Monomio & operator- (ed::Monomio const &m1, ed::Monomio const &m2){
+	Monomio & operator- (Monomio const &m1, Monomio const &m2){
 		#ifndef NDEBUG
 			assert( m1.getGrado() == m2.getGrado() );
 		#endif
 
-		ed::Monomio *nuevo = new ed::Monomio(m1);
+		Monomio *nuevo = new Monomio(m1);
 		*nuevo -= m2;
 
 		#ifndef NDEBUG
@@ -110,8 +109,8 @@ namespace ed
 
 	//////////////////
 	// Multiplicación
-	ed::Monomio & operator* (ed::Monomio const &m1, ed::Monomio const &m2){
-		ed::Monomio *nuevo = new Monomio(m1);
+	Monomio & operator* (Monomio const &m1, Monomio const &m2){
+		Monomio *nuevo = new Monomio(m1);
 		*nuevo *= m2;
 
 		#ifndef NDEBUG
@@ -123,8 +122,8 @@ namespace ed
 		return *nuevo;
 	}
 
-	ed::Monomio & operator* (ed::Monomio const &m1, double const x){
-		ed::Monomio *nuevo = new Monomio(m1);
+	Monomio & operator* (Monomio const &m1, double const x){
+		Monomio *nuevo = new Monomio(m1);
 		*nuevo *= x;
 
 		#ifndef NDEBUG
@@ -135,8 +134,8 @@ namespace ed
 
 		return *nuevo;
 	}
-	ed::Monomio & operator* (double const x, ed::Monomio const &m1){
-		ed::Monomio *nuevo = new Monomio(m1);
+	Monomio & operator* (double const x, Monomio const &m1){
+		Monomio *nuevo = new Monomio(m1);
 		*nuevo *= x;
 
 		#ifndef NDEBUG
@@ -150,7 +149,7 @@ namespace ed
 
 	////////////
 	// División
-	ed::Monomio & operator/ (ed::Monomio const &m1, ed::Monomio const &m2){
+	Monomio & operator/ (Monomio const &m1, Monomio const &m2){
 		#ifndef NDEBUG
 			assert( m1.getGrado() >= m2.getGrado() );
 			assert( std::abs( m2.getCoeficiente() ) >= COTA_ERROR );
@@ -168,7 +167,7 @@ namespace ed
 		return *nuevo;
 	}
 
-	ed::Monomio & operator/ (ed::Monomio const &m1, double const x){
+	Monomio & operator/ (Monomio const &m1, double const x){
 		#ifndef NDEBUG
 			assert( std::abs( x ) >= COTA_ERROR );
 		#endif
@@ -185,13 +184,13 @@ namespace ed
 		return *nuevo;
 	}
 
-	ed::Monomio & operator/ (double const x, ed::Monomio const &m1){
+	Monomio & operator/ (double const x, Monomio const &m1){
 		#ifndef NDEBUG
 			assert( m1.getGrado() == 0 );
 			assert( std::abs( m1.getCoeficiente() ) >= COTA_ERROR );
 		#endif
 
-		ed::Monomio *nuevo = new Monomio();
+		Monomio *nuevo = new Monomio();
 		nuevo->setGrado(0);
 		nuevo->setCoeficiente( x / m1.getCoeficiente());
 		
@@ -208,7 +207,7 @@ namespace ed
 	/////////////////////////////////////////////////////////////////////////////
 
 	//  Sobrecarga del operador de entrada
-	istream &operator>>(istream &stream, ed::Monomio &m){
+	istream &operator>>(istream &stream, Monomio &m){
 		double nCoef;
 		int nGrado;
 		stream >> nCoef >> nGrado;
@@ -219,9 +218,18 @@ namespace ed
 
 
 	//  Sobrecarga del operador de salida
-	ostream &operator<<(ostream &stream, ed::Monomio const &m){
-		stream << m.getCoeficiente() << " " << m.getGrado() << '\n';
+	ostream &operator<<(ostream &stream, Monomio const &m){
+		stream << m.getCoeficiente() << " " << m.getGrado();
 		return stream;
+	}
+
+	bool operator<(Monomio const & m1, Monomio const & m2){
+		if( m1.getGrado() < m2.getGrado() ) return true;
+		else if(( m1.getGrado() == m2.getGrado()) 
+		&& (std::abs(m2.getCoeficiente() - m1.getCoeficiente()) >= COTA_ERROR)){
+			return true;
+		}
+		return false;
 	}
 
 

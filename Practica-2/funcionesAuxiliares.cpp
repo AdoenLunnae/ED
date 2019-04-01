@@ -68,7 +68,7 @@ void ed::testPolinomio()
   std::cout << RESET;
   std::cout << "Quitar el comentario de bloque cuando se haya codificado la clase Polinomio " << std::endl << std::endl;
 
-  /*
+  
 	double x;
 
 	ed::Monomio m;
@@ -195,7 +195,7 @@ void ed::testPolinomio()
 	std::cout<< "Asignación de un monomio a un polinomio --> p1 = m"<< std::endl;
 	p1 = m;
 	std::cout<< "p1 = ";
-	p2.escribirPolinomio();
+	p1.escribirPolinomio();
 	std::cout << std::endl;
 	std::cout<< "m = ";
 	m.escribirMonomio();
@@ -205,7 +205,7 @@ void ed::testPolinomio()
 	std::cout<< "Asignación de un número a un polinomio --> p1 = x"<< std::endl;
 	p1 = x;
 	std::cout<< "p1 = ";
-	p2.escribirPolinomio();
+	p1.escribirPolinomio();
 	std::cout << std::endl;
 	std::cout<< "x = " << x;
 	std::cout << std::endl << std::endl;
@@ -259,7 +259,7 @@ void ed::testPolinomio()
 	p1.escribirPolinomio();
 	std::cout << std::endl;
 	std::cout<< "p2 = ";
-	p2.escribirPolinomio();
+	p1.escribirPolinomio();
 	std::cout << std::endl;
 	std::cout<< "Resultado p1 += p2"<< std::endl;
 	p1 += p2;
@@ -278,7 +278,7 @@ void ed::testPolinomio()
 	std::cout<< "Resultado p1 -= p2"<< std::endl;
 	p1 -= p2;
 	std::cout<< "p1 = ";
-	p2.escribirPolinomio();
+	p1.escribirPolinomio();
 	std::cout << std::endl << std::endl;
 
 	// Operador de multiplicación y asignación
@@ -292,7 +292,7 @@ void ed::testPolinomio()
 	std::cout<< "Resultado p1 *= p2"<< std::endl;
 	p1 *= p2;
 	std::cout<< "p1 = ";
-	p2.escribirPolinomio();
+	p1.escribirPolinomio();
 	std::cout << std::endl << std::endl;
 
 	// Operador de división y asignación
@@ -308,7 +308,7 @@ void ed::testPolinomio()
 		std::cout<< "Resultado p1 *= p2"<< std::endl;
 		p1 /= p2;
 		std::cout<< "p1 = ";
-		p2.escribirPolinomio();
+		p1.escribirPolinomio();
 		std::cout << std::endl << std::endl;
 	}
 	else
@@ -467,7 +467,7 @@ void ed::testPolinomio()
 	p3.escribirPolinomio();
 	std::cout << std::endl;
 	std::cout<< "p3(" << x << ") = " << p3.calcularValor(x) << std::endl << std::endl;
-*/
+
 
 	// Fin
 	return;
@@ -486,7 +486,7 @@ void ed::operadoresExternosPolinomios()
   std::cout << RESET;
   std::cout << "Quitar el comentario de bloque cuando se haya codificado la clase Polinomio y los operadores externos de dicha clase" << std::endl << std::endl;
 
-/*
+
 	double x;
 
 	// Constructor por defecto
@@ -814,6 +814,6 @@ void ed::operadoresExternosPolinomios()
 
 
 	std::cout << std::endl;
-*/
+
 	return;
 }

@@ -162,7 +162,7 @@ void ed::Monomio::escribirMonomio() const {
 			result += std::string(tmp);
 		}
 	}
-	std::cout << result << std::endl;
+	std::cout << result;
 }
 
 

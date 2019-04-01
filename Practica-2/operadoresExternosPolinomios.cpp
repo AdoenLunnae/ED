@@ -6,6 +6,8 @@
 
 // Ficheros de cabecera
 #include <iostream>
+#include <string>
+#include <sstream>
 
 #include "operadoresExternosPolinomios.hpp"
 
@@ -16,27 +18,6 @@
 namespace ed
 {
 
-bool operator==(ed::Polinomio const & p1, ed::Polinomio const & p2)
-{
-	// COMPLETAR Y MODIFICAR
-
-	// MODIFICAR: SE DEVUELVE UN VALOR ARBITRARIO PARA NO GENERAR AVISOS AL COMPILAR
-		return false;
-}
-
-// COMPLETAR LOS OTROS OPERADORES DE IGUALDAD
-
-
-
-////////////////////////////////////////////////////////////////////////////////////
-// Operadores de desigualdad
-bool operator!=(ed::Polinomio const & p1, ed::Polinomio const & p2)
-{
-	// COMPLETAR Y MODIFICAR
-
-	// MODIFICAR: SE DEVUELVE UN VALOR ARBITRARIO PARA NO GENERAR AVISOS AL COMPILAR
-	return true;
-}
 
 // COMPLETAR LOS OTROS OPERADORES DE DESIGUALDAD
 
@@ -45,50 +26,254 @@ bool operator!=(ed::Polinomio const & p1, ed::Polinomio const & p2)
 // Operadores unarios
 
 // COMPLETAR
-ed::Polinomio & operator+(ed::Polinomio const & p)
+
+Polinomio & operator-(Polinomio const &p)
 {
-	// COMPLETAR Y MODIFICAR
-	// Se crea un nuevo objeto
-	ed::Polinomio *nuevo = new ed::Polinomio(p);
-
-	// Se devuelve el resultado
-	return *nuevo;
+	Polinomio *retV = new Polinomio;
+	for(int i = 0; i < p.getNumeroMonomios(); i++){
+		*retV -= p.getMonomios()[i];
+	}
+	return  *retV;
 }
-
-
-// COMPLETAR EL OTRO OPERADOR UNARIO PREFIJO: resta
 
 
 //////////////////////////////////////////////////////////////////////////////////////
 
 // Operadores binarios de la suma
-ed::Polinomio & operator+(ed::Polinomio const &p1,  ed::Polinomio const &p2)
+Polinomio & operator+(Polinomio const &p1,  Polinomio const &p2)
 {
 	// COMPLETAR Y MODIFICAR
 	// Se crea un nuevo objeto
-	ed::Polinomio *nuevo = new ed::Polinomio;
+	Polinomio *nuevo = new Polinomio(p1);
+	*nuevo += p2;
 
 	// Se devuelve el resultado
 	return *nuevo;
 }
 
-	// COMPLETAR LOS OTROS OPERADORES DE SUMA
+Polinomio & operator+(Polinomio const &p,  Monomio const &m)
+{
+	// COMPLETAR Y MODIFICAR
+	// Se crea un nuevo objeto
+	Polinomio *nuevo = new Polinomio(p);
+	*nuevo += m;
 
+	// Se devuelve el resultado
+	return *nuevo;
+}
+
+Polinomio & operator+(Polinomio const &p,  double const &x)
+{
+	// COMPLETAR Y MODIFICAR
+	// Se crea un nuevo objeto
+	Polinomio *nuevo = new Polinomio(p);
+	*nuevo += x;
+
+	// Se devuelve el resultado
+	return *nuevo;
+}
+
+Polinomio & operator+(Monomio const &m, Polinomio const &p)
+{
+	// COMPLETAR Y MODIFICAR
+	// Se crea un nuevo objeto
+	Polinomio *nuevo = new Polinomio(p);
+	*nuevo += m;
+
+	// Se devuelve el resultado
+	return *nuevo;
+}
+
+Polinomio & operator+(double const &x, Polinomio const &p)
+{
+	// COMPLETAR Y MODIFICAR
+	// Se crea un nuevo objeto
+	Polinomio *nuevo = new Polinomio(p);
+	*nuevo += x;
+
+	// Se devuelve el resultado
+	return *nuevo;
+}
 	////////////
-	// Resta
 
-	// COMPLETAR
 
+Polinomio & operator-(Polinomio const &p1,  Polinomio const &p2)
+{
+	// COMPLETAR Y MODIFICAR
+	// Se crea un nuevo objeto
+	Polinomio *nuevo = new Polinomio(p1);
+	*nuevo -= p2;
+
+	// Se devuelve el resultado
+	return *nuevo;
+}
+
+Polinomio & operator-(Polinomio const &p,  Monomio const &m)
+{
+	// COMPLETAR Y MODIFICAR
+	// Se crea un nuevo objeto
+	Polinomio *nuevo = new Polinomio(p);
+	*nuevo -= m;
+
+	// Se devuelve el resultado
+	return *nuevo;
+}
+
+Polinomio & operator-(Polinomio const &p,  double const &x)
+{
+	// COMPLETAR Y MODIFICAR
+	// Se crea un nuevo objeto
+	Polinomio *nuevo = new Polinomio(p);
+	*nuevo -= x;
+
+	// Se devuelve el resultado
+	return *nuevo;
+}
+
+
+Polinomio & operator-(Monomio const &m, Polinomio const &p)
+{
+	// COMPLETAR Y MODIFICAR
+	// Se crea un nuevo objeto
+	Polinomio *nuevo = new Polinomio(p);
+	*nuevo -= m;
+
+	// Se devuelve el resultado
+	return *nuevo;
+}
+
+Polinomio & operator-(double const &x, Polinomio const &p)
+{
+	// COMPLETAR Y MODIFICAR
+	// Se crea un nuevo objeto
+	Polinomio *nuevo = new Polinomio(p);
+	*nuevo -= x;
+
+	// Se devuelve el resultado
+	return *nuevo;
+}
 
 	//////////////////
-	// Multiplicación
 
-	// COMPLETAR
+
+Polinomio & operator*(Polinomio const &p1,  Polinomio const &p2)
+{
+	// COMPLETAR Y MODIFICAR
+	// Se crea un nuevo objeto
+	Polinomio *nuevo = new Polinomio(p1);
+	*nuevo *= p2;
+
+	// Se devuelve el resultado
+	return *nuevo;
+}
+
+Polinomio & operator*(Polinomio const &p,  Monomio const &m)
+{
+	// COMPLETAR Y MODIFICAR
+	// Se crea un nuevo objeto
+	Polinomio *nuevo = new Polinomio(p);
+	*nuevo *= m;
+
+	// Se devuelve el resultado
+	return *nuevo;
+}
+
+Polinomio & operator*(Polinomio const &p,  double const &x)
+{
+	// COMPLETAR Y MODIFICAR
+	// Se crea un nuevo objeto
+	Polinomio *nuevo = new Polinomio(p);
+	*nuevo *= x;
+
+	// Se devuelve el resultado
+	return *nuevo;
+}
+
+Polinomio & operator*(Monomio const &m, Polinomio const &p)
+{
+	// COMPLETAR Y MODIFICAR
+	// Se crea un nuevo objeto
+	Polinomio *nuevo = new Polinomio(p);
+	*nuevo *= m;
+
+	// Se devuelve el resultado
+	return *nuevo;
+}
+
+Polinomio & operator*(double const &x, Polinomio const &p)
+{
+	// COMPLETAR Y MODIFICAR
+	// Se crea un nuevo objeto
+	Polinomio *nuevo = new Polinomio(p);
+	*nuevo *= x;
+
+	// Se devuelve el resultado
+	return *nuevo;
+}
 
 	////////////
 	// División
+Polinomio & operator/(Polinomio const &p1,  Polinomio const &p2)
+{
+	// COMPLETAR Y MODIFICAR
+	// Se crea un nuevo objeto
+	Polinomio *nuevo = new Polinomio(p1);
+	*nuevo /= p2;
 
-	// COMPLETAR
+	// Se devuelve el resultado
+	return *nuevo;
+}
+
+Polinomio & operator/(Polinomio const &p,  Monomio const &m)
+{
+	// COMPLETAR Y MODIFICAR
+	// Se crea un nuevo objeto
+	Polinomio *nuevo = new Polinomio(p);
+	*nuevo /= m;
+
+	// Se devuelve el resultado
+	return *nuevo;
+}
+
+Polinomio & operator/(Polinomio const &p,  double const &x)
+{
+	// COMPLETAR Y MODIFICAR
+	// Se crea un nuevo objeto
+	Polinomio *nuevo = new Polinomio(p);
+	*nuevo /= x;
+
+	// Se devuelve el resultado
+	return *nuevo;
+}
+
+Polinomio & operator/(Monomio const &m, Polinomio const &p)
+{
+	#ifndef NDEBUG
+		assert(m.getGrado()>=p.getGrado());
+	#endif
+	// Se crea un nuevo objeto
+	Polinomio *nuevo = new Polinomio;	
+	*nuevo = m;
+	*nuevo /= p;
+
+	// Se devuelve el resultado
+	return *nuevo;
+}
+
+Polinomio & operator/(double const &x, Polinomio const &p)
+{
+	#ifndef NDEBUG
+		assert(p.getGrado()==0);
+		assert(std::abs(p.getMonomio(0).getCoeficiente()) >=COTA_ERROR);
+	#endif
+
+	Polinomio *nuevo = new Polinomio;
+	*nuevo = x;
+	*nuevo /= p;
+
+	// Se devuelve el resultado
+	return *nuevo;
+}
 
 
 ////////////////////////////////////////////////////////////////////////////
@@ -96,10 +281,13 @@ ed::Polinomio & operator+(ed::Polinomio const &p1,  ed::Polinomio const &p2)
 // Sobrecarga del operador de entrada
 istream &operator>>(istream &stream, Polinomio &p)
 {
-	// COMPLETAR
-
-	// Se devuelve el flujo de entrada
-  return stream;
+	Monomio aux;
+	while(!stream.eof()){
+		stream >> aux;
+		p += aux;
+	}
+		
+	return stream;
 }
 
 
@@ -107,8 +295,10 @@ istream &operator>>(istream &stream, Polinomio &p)
 // Sobrecarga del operador de salida
 ostream &operator<<(ostream &stream, Polinomio const &p)
 {
-	// COMPLETAR
-
+	std::vector<Monomio> monomios = p.getMonomios();
+	for(int i = 0; i<monomios.size(); i++){
+		stream << monomios[i] << ' ';
+	}
 	// Se devuelve el flujo de salida
   return stream;
 }

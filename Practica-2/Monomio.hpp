@@ -13,6 +13,8 @@
 #include <cassert>
 
 #include <iostream>
+
+
 #define COTA_ERROR 1.0e-6  //!< Cota de error para la comparación números reales
 
 // Se incluye la clase Monomio dentro del espacio de nombre de la asigantura: ed

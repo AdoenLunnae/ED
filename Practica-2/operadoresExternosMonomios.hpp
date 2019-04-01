@@ -110,7 +110,7 @@ namespace ed
 	*/
 	ed::Monomio & operator-(ed::Monomio const & m);
 
-
+	bool operator<(ed::Monomio const & m1, ed::Monomio const & m2);
 	//////////////////////////////////////////////////////////
 
 	//! \name Operador binario de la suma
