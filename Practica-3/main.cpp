@@ -13,23 +13,6 @@ using std::cin;
 
 using namespace ed;
 
-class PrintOperator: public OperadorNodo<Persona>{
-  public:
-    PrintOperator(){};
-    bool aplicar(const Persona& info){
-      std::cout << info.dni() << '\n';
-      return true;
-    }
-};
-class PrintInt: public OperadorNodo<int>{
-  public:
-    PrintInt(){};
-    bool aplicar(const int& info){
-      std::cout << info << '\t';
-      return true;
-    }
-};
-
 
 int main()
 {
@@ -54,8 +37,8 @@ int main()
   while(opt != 0){
     cout << BIRED << "Elige opción\n" << RESET;
     cout << BICYAN << "1. Insertar más personas\n";
-    cout << "2. Buscar una persona\n3.Mostrar contenido\n";
-    cout << "4. Borrar una persona\n5.Borrar el árbol\n";
+    cout << "2. Buscar una persona\n3. Mostrar contenido\n";
+    cout << "4. Borrar una persona\n5. Borrar el árbol\n";
     cout << "0. Salir\n" << RESET;
     cin >> opt;
     switch (opt)
@@ -68,54 +51,67 @@ int main()
         }
       }break;
       case 2:{
-        int aux;
-        Persona p;
-        cout << IBLUE << "Introduce el DNI que buscas:\t" << RESET;
-        cin >> aux;
-        p.dni(aux);
-        if(a.buscar(p)) 
-          cout << GREEN << a.actual() << '\n' << RESET;
-        else 
-          cout << IRED << "La persona buscada no está en el árbol\n" << RESET;         
+        if(! a.estaVacio()){
+          int aux;
+          Persona p;
+          cout << IBLUE << "Introduce el DNI que buscas:\t" << RESET;
+          cin >> aux;
+          p.dni(aux);
+          if(a.buscar(p)) 
+            cout << GREEN << a.actual() << '\n' << RESET;
+          else 
+            cout << IRED << "La persona buscada no está en el árbol\n" << RESET;      
+        }
+        else{
+          cout << IRED << "No se puede buscar en un árbol vacío\n" << RESET;
+        }   
       }break;
       case 3:{
-        int opt2 = -1;
-        while((opt2 != 0) && (opt2 != 1) && (opt2 != 2)){
-          cout << BIRED << "Elige opción\n" << RESET;
-          cout << BICYAN << "0. Pre-Orden\n1. Post-Orden\n";
-          cout << "2. In-Orden\n" << RESET;
-          cin >> opt2;
+        if(a.estaVacio()){
+          cout << IRED << "No se puede mostrar un árbol vacío\n" << RESET;
         }
-        switch (opt2)
-        {
-          case 0:
-            a.recorridoPreOrden(op);
-            break;
-          case 1:
-            a.recorridoPostOrden(op);
-            break;
-          case 2:
-            a.recorridoInOrden(op);
-            break;
-          default:
-            break;
+        else{
+          int opt2 = -1;
+          while((opt2 != 0) && (opt2 != 1) && (opt2 != 2)){
+            cout << BIRED << "Elige opción\n" << RESET;
+            cout << BICYAN << "1. Pre-Orden\n2. Post-Orden\n";
+            cout << "3. In-Orden\n" << RESET;
+            cin >> opt2;
+          }
+          switch (opt2)
+          {
+            case 1:
+              a.recorridoPreOrden(op);
+              break;
+            case 2:
+              a.recorridoPostOrden(op);
+              break;
+            case 3:
+              a.recorridoInOrden(op);
+              break;
+            default:
+              break;
+          }
         }
       }break;
       case 4:{
-        int aux;
-        Persona p;
-        cout << IBLUE << "Introduce el DNI que buscas:\t" << RESET;
-        cin >> aux;
-        p.dni(aux);
-        if(a.buscar(p)){
-          if(a.borrar())
-            cout << GREEN << "BORRADO CORRECTO\n";
-          else 
-            cout << IRED << "FALLO AL BORRAR\n";
-          cout << RESET;
+        if(! a.estaVacio()){
+          Persona p;
+          cout << IBLUE << "Introduce los datos que buscas:\n" << RESET;
+          cin >> p;
+          if(a.buscar(p)){
+            if(a.borrar())
+              cout << GREEN << "BORRADO CORRECTO\n";
+            else 
+              cout << IRED << "FALLO AL BORRAR\n";
+            cout << RESET;
+          }
+          else{
+            cout << IRED << "La persona buscada no está en el árbol\n" << RESET;    
+          }
         }
         else{
-          cout << IRED << "La persona buscada no está en el árbol\n" << RESET;    
+          cout << IRED << "No se puede borrar de un árbol vacío\n" << RESET;
         }
       }break;
       case 5:{

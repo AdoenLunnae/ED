@@ -2,6 +2,7 @@
 #define __ARBOLBINARIOORDENADOENLAZADO_HPP__
 
 #include <iostream>
+#include <string>
 #include <cassert>
 #include "arbolbinarioordenado.hpp"
 #include "operadornodo.hpp"
@@ -130,6 +131,7 @@ namespace ed
 				return *this;
 			}
 
+
 		}; //Fin clase NodoArbolBinario
 
 		//Implementación de la raíz
@@ -206,23 +208,38 @@ namespace ed
 
 		void borrarArbol()
 		{
+			#ifndef NDEBUG
+				assert(! estaVacio());
+			#endif
+
 			_raiz = NULL;
+
+			#ifndef NDEBUG
+				assert(estaVacio());
+			#endif
 		}
 
 		bool borrar()
 		{
 			#ifndef NDEBUG 
 				assert(!estaVacio());
+				assert(existeActual());
+				G old = _actual->getInfo();
 			#endif
+			
 			if(_actual->esHoja()){
-				if(_actual > _padre){
-					_padre->setDerecho(NULL);
-				}
+				if(_actual == _raiz) borrarArbol();
+				
 				else{
-					_padre->setIzquierdo(NULL);
+					if(_actual->getInfo() > _padre->getInfo()){
+						_padre->setDerecho(NULL);
+					}
+					else{
+						_padre->setIzquierdo(NULL);
+					}
+					_actual = _raiz;
+					_padre = NULL;
 				}
-				_actual = NULL;
-				_padre = NULL;
 			}
 			else{
 				NodoArbolBinario *paux = _padre;
@@ -236,9 +253,9 @@ namespace ed
 						aux = aux->getIzquierdo();
 					}
 					if(aux->getInfo() < paux->getInfo())
-						paux->setIzquierdo(NULL);
+						paux->setIzquierdo(aux->getDerecho());
 					else
-						paux->setDerecho(NULL);
+						paux->setDerecho(aux->getDerecho());
 				}
 				else{
 					paux = aux;
@@ -255,34 +272,69 @@ namespace ed
 				}
 				_actual->setInfo(aux->getInfo());
 			}
+			
+			#ifndef NDEBUG
+				assert(! buscar(old));
+			#endif
+			
 			return true;
 		}
 
 		void recorridoPreOrden (OperadorNodo<G> &operador) const
 		{
+			#ifndef NDEBUG 
+				assert(!estaVacio());
+			#endif
+
 			_raiz->recorridoPreOrden(operador);
 		}
 
 		void recorridoPostOrden (OperadorNodo<G> &operador) const
 		{
+			#ifndef NDEBUG 
+				assert(!estaVacio());
+			#endif
+
 			_raiz->recorridoPostOrden(operador);
 		}
 
 		void recorridoInOrden (OperadorNodo<G> &operador) const
 		{
+			#ifndef NDEBUG 
+				assert(!estaVacio());
+			#endif
+
 			_raiz->recorridoInOrden(operador);
 		}
 
 		bool buscar(const G& x)
 		{
+			#ifndef NDEBUG 
+				assert(!estaVacio());
+			#endif
+
+			//Si el cursor no apuntaba a ningún nodo, al finalizar
+			//sin encontrar el dato, quedará en la raíz.
+			NodoArbolBinario *olda = _raiz;
+			NodoArbolBinario *oldp = NULL;
+
+			//Si el cursor apuntaba a un nodo, volverá a él si
+			//no encuentra el dato buscado.
+			if(existeActual()){
+				NodoArbolBinario *olda = _actual;
+				NodoArbolBinario *oldp = _padre;
+			}
+				
 			_actual = _raiz;
 			_padre = NULL;
 			bool found = false;
 			while((_actual != NULL) && (!found)){
+				//Si el actual es mayor que el dato, éste estará a la izquierda
 				if(_actual->getInfo() > x){
 					_padre = _actual;
 					_actual = _actual->getIzquierdo();
 				}
+				//Si es menor, estará a la derecha
 				else if(_actual->getInfo() < x){
 					_padre = _actual;
 					_actual = _actual->getDerecho();
@@ -292,8 +344,9 @@ namespace ed
 				}
 			}
 			if(!found){
-				_actual = NULL;
-				_padre = NULL;
+				//Asignamos los valores antiguos si no encontramos el dato
+				_actual = olda;
+				_padre = oldp;
 			}
 			return found;
 		}
@@ -317,7 +370,6 @@ namespace ed
 		{
 			return _actual->getInfo();
 		}
-
 		/*!@}*/
 	};
 
