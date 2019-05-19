@@ -12,7 +12,7 @@ using namespace ed;
 
 int main()
 {
-	Grafo<string, int> *g;
+	Grafo<string, int> *g = new Grafo<string, int>;
 	int opcion;
 	bool grafoIntroducido = false;
 
@@ -21,7 +21,7 @@ int main()
 		switch (opcion) {
 			case 1: // Cargar grafo desde fichero
 			if ( grafoIntroducido )
-			(*g).borrarGrafo(); // Si hay un grafo introducido se borra.
+			g->borrarGrafo(); // Si hay un grafo introducido se borra.
 
 			grafoIntroducido = cargarGrafo(g);
 

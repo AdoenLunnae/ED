@@ -6,6 +6,7 @@
 #include <cstdlib> //Para usar system
 #include <fstream> //Para trabajar con ficheros
 #include <sstream>
+#include <algorithm>
 
 #include "grafo.hpp"
 #include "algoritmosgrafos.hpp"
@@ -30,7 +31,7 @@ int menu()
 
 template <class G_Nodo, class G_Lado>
 
-bool cargarGrafo(Grafo<G_Nodo, G_Lado> *g)
+bool cargarGrafo(Grafo<G_Nodo, G_Lado> * &g)
 {
     string ficheroMatriz, ficheroEtiquetas;
     string tokenLabels, tokenMatrix;
@@ -42,8 +43,8 @@ bool cargarGrafo(Grafo<G_Nodo, G_Lado> *g)
     cout << "Fichero de las etiquetas: ";
     cin >> ficheroEtiquetas;
 
-    ifstream matrix(ficheroMatriz, ifstream::in);
-    ifstream labels(ficheroEtiquetas, ifstream::in);
+    ifstream matrix(ficheroMatriz.c_str(), ifstream::in);
+    ifstream labels(ficheroEtiquetas.c_str(), ifstream::in);
     if (!matrix.is_open())
     {
         cout << "Error al abrir el fichero de la matriz\n";
@@ -60,7 +61,7 @@ bool cargarGrafo(Grafo<G_Nodo, G_Lado> *g)
         numberRows++;
     }
     labels.close();
-    labels.open(ficheroEtiquetas);
+    labels.open(ficheroEtiquetas.c_str(), ifstream::in);
     g->reservaMemoria(numberRows);
 
     for (int i = 0; i < g->getNumNodos(); ++i)
@@ -90,7 +91,21 @@ bool cargarGrafo(Grafo<G_Nodo, G_Lado> *g)
 template <class G_Nodo, class G_Lado>
 void algoritmoFloyd(const Grafo<G_Nodo, G_Lado> &g)
 {
-    // TODO
+    int **D;
+    int **I;
+    G_Nodo origen;
+    G_Nodo destino;
+    AlgoritmosGrafos<G_Nodo, G_Lado> algoritmo;
+    algoritmo.floyd(g, D, I);
+    for(int i = 0; i < g.getNumNodos(); ++i)
+    {
+        for(int j = 0; j < g.getNumNodos(); ++j)
+        {
+            cout << D[i][j] << "  ";
+        }
+        cout << "\n\n";
+    }
+    cout     
 }
 
 #endif
