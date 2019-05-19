@@ -91,6 +91,16 @@ public:
 
     Grafo operator&=(Grafo &g)
     {
+        reservaMemoria(g.getNumNodos());
+        setNumNodos(g.getNumNodos());
+        for(int i = 0; i < getNumNodos(); ++i)
+        {
+            for(int j = 0; j < getNumNodos(); ++j)
+            {
+                setLado(i, j, g.getLado(i, j));
+            }
+            setNodo(i, g.getNodo(i));
+        }
     }
 
     void setLado(int const i, int const j, G_Lado const &l) { _lados[i][j] = l; }
