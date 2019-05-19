@@ -24,7 +24,7 @@ public:
     // constructores
     Grafo()
     {
-        _lados = new G_Lado*;
+        _lados = new G_Lado *;
         _nodos = new G_Nodo;
         _numNodos = 0;
     }
@@ -70,18 +70,19 @@ public:
     // funciones
     // TODO
     void borrarGrafo()
-    {   
-        if(_nodos)
+    {
+        if (_nodos)
         {
             delete[] _nodos;
             _nodos = NULL;
         }
         for (int i = 0; i < _numNodos; i++)
         {
-            if(_lados[i])
+            if (_lados[i])
                 delete[] _lados[i];
         }
-        if(_lados){
+        if (_lados)
+        {
             delete[] _lados;
             _lados = NULL;
         }
@@ -97,6 +98,8 @@ public:
     void setNodo(int const i, G_Nodo const &n) { _nodos[i] = n; }
 
     void setNumNodos(int const n) { _numNodos = n; }
+
+    G_Nodo *getNodos() const { return _nodos; }
 
     G_Lado getLado(int const i, int const j) const { return (_lados[i][j]); }
 
