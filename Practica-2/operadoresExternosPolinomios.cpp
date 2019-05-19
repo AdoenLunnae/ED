@@ -8,7 +8,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-
+#include <cstdio>
 #include "operadoresExternosPolinomios.hpp"
 
 #include "operadoresExternosMonomios.hpp"
@@ -30,7 +30,7 @@ namespace ed
 Polinomio & operator-(Polinomio const &p)
 {
 	Polinomio *retV = new Polinomio;
-	for(int i = 0; i < p.getNumeroMonomios(); i++){
+	for(unsigned int i = 0; i < p.getNumeroMonomios(); i++){
 		*retV -= p.getMonomios()[i];
 	}
 	return  *retV;
@@ -282,6 +282,8 @@ Polinomio & operator/(double const &x, Polinomio const &p)
 istream &operator>>(istream &stream, Polinomio &p)
 {
 	Monomio aux;
+	
+	stream.ignore();
 	while(!stream.eof()){
 		stream >> aux;
 		p += aux;
@@ -296,7 +298,7 @@ istream &operator>>(istream &stream, Polinomio &p)
 ostream &operator<<(ostream &stream, Polinomio const &p)
 {
 	std::vector<Monomio> monomios = p.getMonomios();
-	for(int i = 0; i<monomios.size(); i++){
+	for(unsigned int i = 0; i<monomios.size(); i++){
 		stream << monomios[i] << ' ';
 	}
 	// Se devuelve el flujo de salida
