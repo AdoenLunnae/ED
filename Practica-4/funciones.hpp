@@ -145,9 +145,9 @@ void algoritmoFloyd(const Grafo<G_Nodo, G_Lado> &g)
     cout << "La distancia de " << origen << " a " << destino << " es " << D[posOrigen][posDestino] << "\n";
     vector<int>result = algoritmo.reconstruirCamino(I, posOrigen, posDestino);
     for(int i = 0; i < result.size() - 1; ++i){
-        cout << nodos[i] << " -> ";
+        cout << nodos[result[i]] << " -> ";
     }
-    cout << nodos[result.size() - 1] << "\n";
+    cout << nodos[result[result.size() - 1]] << "\n";
 
 }
 
